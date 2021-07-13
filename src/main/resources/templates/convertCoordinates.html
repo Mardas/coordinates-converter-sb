@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang=""> <!--<![endif]-->
+<link href="/css/style.css" rel="stylesheet"/>
+<head>
+    <title>Coordinates converter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<h1 class="h1">Coordinates converter</h1>
+<!--<body th:style="'background:url('+ @{/images/landscape1b.jpg} +');background-repeat: no-repeat; background-size: cover;'">-->
+<body>
+
+<div class="container">
+    <aside class="left-side">
+        <form action="#" th:action="@{/convertCoordinates}" th:object="${coordinatesToConvert}" method="post">
+            <!--<img th:src="@{/images/landscape.jpg}"/> -->
+            <label for="inputCoordinates" class="label">Paste your coordinates below:</label>
+            <br>
+            <textarea id="inputCoordinates" name="inputCoordinates" th:field="*{coordinates}" rows="40" cols="55" ></textarea>
+            <br>
+            <label class="label" for="Imput coordinates format">Choose an imput coordinates format:</label>
+            <select id="Imput coordinates format" th:field="*{coordinatesFormat}" >
+                <option th:each="coordFormat : ${typeOfConvertion}"
+                        th:value="${coordFormat}"
+                        th:text="${coordFormat}" ></option>
+            </select>
+            <input type="submit" class="btn" value="Convert">
+
+        </form>
+    </aside>
+    <div class="right-side">
+        <p>
+            <b>Input format for DD coordinates:</b> <br>36.66555555555556;43.878055555555555
+        </p>
+        <p>
+            <b>Input format for DMS coordinates:</b> <br> 36° 43' 30.0";43° 2' 37.0" <b>or</b> 36 43 30.0;43 2 37.0
+        </p>
+        <img th:src="@{/images/landscape1b.jpg}"
+             alt="photo"
+             width="700"
+        />
+        <figcaption class="figcaption"><i>Iraqi Kurdistan. 2014, picture was taken during the archaeological survey conducted within the frameworks of UGZAR project. The project was aiming to map archaeological sites within the survey area. Author: J. Mardas</i></figcaption>
+    </div>
+
+</div>
+<footer class="footer">
+    <p class="labelFooter">Author: Joanna Mardas<br>
+        <a href="mailto:joanna.mardas@wp.pl" class="contacts-link">joanna.mardas@wp.pl</a></p>
+</footer>
+</body>
+</html>
